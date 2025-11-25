@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dish Form</title>
+  <style>
+    body {
+      background-color: #1e1e1e;
+      color: #ddd;
+      font-family: Arial, sans-serif;
+      width: 500px;
+      margin: 40px auto;
+    }
+    input {
+      margin-bottom: 10px;
+      padding: 5px;
+      width: 100%;
+      background-color: #2a2a2a;
+      border: 1px solid #444;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+<form method="post" th:action="${dish == null} ? @{/dishes/add} : @{/dishes/edit/{id} (id = ${dish.id})}">
+
+  <label>Dish id:</label>
+  <input type="text" name="dishId" th:value="${dish?.dishId}"/>
+
+  <label>Name:</label>
+  <input type="text" name="name"  th:value="${dish?.name}"/>
+
+  <label>Cuisine:</label>
+  <input type="text" name="cuisine"  th:value="${dish?.cuisine}"/>
+
+  <label>Preparation time:</label>
+  <input type="number" name="preparationTime"  th:value="${dish?.preparationTime}"/>
+
+  <input type="submit" value="Submit"/>
+</form>
+</body>
+</html>

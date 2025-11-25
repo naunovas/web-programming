@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Add Dish to Chef</title>
+    <style type="text/css">
+        body {
+            width: 800px;
+            margin: auto;
+            font-family: Arial, sans-serif;
+            background-color: #1e1e1e;
+            color: #ddd;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            background-color: #2a2a2a;
+        }
+        table, td, th {
+            border: 1px solid #444;
+            padding: 10px;
+        }
+        th {
+            background-color: #333;
+            color: white;
+        }
+        section {
+            float: left;
+            width: 60%;
+        }
+        aside {
+            float: right;
+            width: 35%;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Select the Dish to add to the Chef</h1>
+</header>
+<section>
+    <h2>Select dish:</h2>
+    <form action="/chefDetails" method="POST">
+        <input type="text" name="chefId" th:value="${chef.id}" hidden/>
+        <div th:each="dish : ${dishes}">
+            <input type="radio" name="dishId"
+                   th:value="${dish.dishId}">
+            <span th:text="${dish.name}"></span>
+            <br/>
+        </div>
+        <input type="submit" value="Add dish">
+    </form>
+</section>
+<aside>
+    <table>
+        <tr>
+            <td><b>Chef ID</b></td>
+            <td th:text="${chef.id}"></td>
+        </tr>
+        <tr>
+            <td><b>Chef Name</b></td>
+            <td th:text="|${chef.firstName} ${chef.lastName}|"></td>
+        </tr>
+    </table>
+</aside>
+</body>
+</html>
