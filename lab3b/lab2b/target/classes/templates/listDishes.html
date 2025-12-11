@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <form method="get" action="/dishes/dish-form">
+        <input type="submit" value="Add Dish">
+    </form>
+</div>
+
+<div>
+    <h2>Filter by chef:</h2>
+    <form method="get" action="/dishes">
+        <select name="chefId">
+            <option th:each="chef : ${chefs}" th:value="${chef.id}" th:text="|${chef.firstName} ${chef.lastName}|"></option>
+        </select>
+        <br/>
+        <input type="submit" value="Submit"/>
+    </form>
+</div>
+
+<div th:each="dish : ${dishes}">
+    <p th:text="|${dish.dishId} ${dish.name} ${dish.cuisine} ${dish.preparationTime} , ${dish.chef.firstName} ${dish.chef.lastName}|"></p>
+
+    <form method="get" th:action="@{/dishes/dish-form/{id} (id = ${dish.id})}">
+        <input type="submit" value="Edit"/>
+    </form>
+
+    <form method="post" th:action="@{/dishes/delete/{id} (id = ${dish.id})}">
+        <input type="submit" value="Delete"/>
+    </form>
+</div>
+</body>
+</html>
